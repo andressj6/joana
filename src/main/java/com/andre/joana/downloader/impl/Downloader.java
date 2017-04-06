@@ -6,13 +6,12 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-import com.andre.joana.downloader.wrapper.ObservableReadableByteChannelCallback;
 import com.andre.joana.downloader.wrapper.ObservableReadableByteChannel;
 import com.andre.joana.downloader.wrapper.ReadableByteChannelObserver;
 
-public class Downloader implements ReadableByteChannelObserver {
+public class Downloader {
 
-    private ObservableReadableByteChannelCallback callback;
+    private ReadableByteChannelObserver callback;
 
     /**
      * Creates a new instance of the downloader object, which will execute the proper download
@@ -22,7 +21,7 @@ public class Downloader implements ReadableByteChannelObserver {
      * @param remoteURL        the file origin
      * @param progressCallback the callback which will be executed whenever the data is received
      */
-    public Downloader(String localPath, String remoteURL, ObservableReadableByteChannelCallback progressCallback) {
+    public Downloader(String localPath, String remoteURL, ReadableByteChannelObserver progressCallback) {
         this.callback = progressCallback;
         FileOutputStream fos;
         ReadableByteChannel rbc;
@@ -30,20 +29,11 @@ public class Downloader implements ReadableByteChannelObserver {
 
         try {
             url = new URL(remoteURL);
-            rbc = new ObservableReadableByteChannel(Channels.newChannel(url.openStream()), contentLength(url), this);
+            rbc = new ObservableReadableByteChannel(Channels.newChannel(url.openStream()), contentLength(url), callback);
             fos = new FileOutputStream(localPath);
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onDataReceivedCallback(ObservableReadableByteChannel rbc, double progress) {
-        if (callback == null) {
-            System.out.println(String.format("download progress %d bytes received, %.02f%%", rbc.getReadSoFar(), progress));
-        } else {
-            callback.onDataReceived(rbc.getReadSoFar(), progress);
         }
     }
 

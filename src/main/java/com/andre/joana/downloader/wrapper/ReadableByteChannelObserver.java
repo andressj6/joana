@@ -4,9 +4,10 @@ package com.andre.joana.downloader.wrapper;
  * Not my solution. See (and thanks)
  * http://stackoverflow.com/questions/2263062/how-to-monitor-progress-jprogressbar-with-filechannels-transferfrom-method
  */
+@FunctionalInterface
 public interface ReadableByteChannelObserver {
     /**
-     * The ReadableByteChannelObserver receives onDataReceivedCallback() messages
+     * The ReadableByteChannelObserver receives onDataReceived() messages
      * from the read loop.  It is passed the progress as a percentage
      * if known, or -1.0 to indicate indeterminate progress.
      * <p>
@@ -19,5 +20,5 @@ public interface ReadableByteChannelObserver {
      * the user interface progress bar. This lets the read loop
      * continue as fast as possible.
      */
-    void onDataReceivedCallback(ObservableReadableByteChannel rbc, double progress);
+    void onDataReceived(ObservableReadableByteChannel rbc, double progress);
 }

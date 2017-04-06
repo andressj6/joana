@@ -39,7 +39,7 @@ public class ObservableReadableByteChannel implements ReadableByteChannel {
         if ((n = rbc.read(bb)) > 0) {
             readSoFar += n;
             progress = expectedSize > 0 ? (double) readSoFar / (double) expectedSize * 100.0 : -1.0;
-            delegate.onDataReceivedCallback(this, progress);
+            delegate.onDataReceived(this, progress);
         }
 
         return n;
