@@ -5,8 +5,6 @@
  */
 package com.andre.khicrawler;
 
-import java.io.File;
-
 import javax.swing.*;
 
 /**
