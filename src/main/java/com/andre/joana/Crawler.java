@@ -1,4 +1,4 @@
-package com.andre.khicrawler;
+package com.andre.joana;
 
 import java.io.File;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.andre.khicrawler.downloader.impl.DownloadData;
-import com.andre.khicrawler.downloader.impl.Downloader;
-import com.andre.khicrawler.downloader.impl.ProgressFrame;
+import com.andre.joana.downloader.impl.DownloadData;
+import com.andre.joana.downloader.impl.Downloader;
+import com.andre.joana.downloader.impl.ProgressFrame;
 
 /**
  * @author André

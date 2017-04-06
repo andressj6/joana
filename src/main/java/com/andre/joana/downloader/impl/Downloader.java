@@ -1,4 +1,4 @@
-package com.andre.khicrawler.downloader.impl;
+package com.andre.joana.downloader.impl;
 
 import java.io.FileOutputStream;
 import java.net.HttpURLConnection;
@@ -6,9 +6,9 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-import com.andre.khicrawler.downloader.wrapper.ObservableReadableByteChannelCallback;
-import com.andre.khicrawler.downloader.wrapper.ObservableReadableByteChannel;
-import com.andre.khicrawler.downloader.wrapper.ReadableByteChannelObserver;
+import com.andre.joana.downloader.wrapper.ObservableReadableByteChannelCallback;
+import com.andre.joana.downloader.wrapper.ObservableReadableByteChannel;
+import com.andre.joana.downloader.wrapper.ReadableByteChannelObserver;
 
 public class Downloader implements ReadableByteChannelObserver {
 

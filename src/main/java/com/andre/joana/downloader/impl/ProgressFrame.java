@@ -1,4 +1,4 @@
-package com.andre.khicrawler.downloader.impl;
+package com.andre.joana.downloader.impl;
 
 import java.awt.*;
 import java.util.Arrays;

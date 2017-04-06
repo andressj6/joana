@@ -1,4 +1,4 @@
-package com.andre.khicrawler.downloader.wrapper;
+package com.andre.joana.downloader.wrapper;
 
 /**
  * Not my solution. See (and thanks)
