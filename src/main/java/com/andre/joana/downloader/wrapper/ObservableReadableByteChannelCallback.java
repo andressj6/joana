@@ -1,4 +1,4 @@
-package com.andre.khicrawler.downloader.wrapper;
+package com.andre.joana.downloader.wrapper;
 
 @FunctionalInterface
 public interface ObservableReadableByteChannelCallback {
