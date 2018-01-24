@@ -20,11 +20,12 @@ import com.andre.joana.downloader.impl.ProgressFrame;
  */
 class Crawler {
 
+    private static final String BASE_URL = "https://downloads.khinsider.com/";
     private static ProgressFrame frame;
 
     public static void crawl(String base) throws Exception {
         Document doc = Jsoup.connect(base).get();
-        Elements links = doc.select("a[href$=.mp3]:contains(Download)");
+        Elements links = doc.select("#songlist tr td:nth-child(3) a");
         if (links.isEmpty()) {
             throw new IllegalArgumentException("Page didn't return any downloadable link");
         }
@@ -34,6 +35,7 @@ class Crawler {
 
     private static void getDownloadLinks(List<String> linkList) throws Exception {
         JFileChooser fc = new JFileChooser();
+        fc.setDialogType(JFileChooser.OPEN_DIALOG);
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fc.setMultiSelectionEnabled(false);
         fc.showDialog(null, "Select Folder");
@@ -43,7 +45,7 @@ class Crawler {
         }
         createFrameWithProgressBar(f.getAbsolutePath(), linkList.size());
         for (String songPage : linkList) {
-            Document doc = Jsoup.connect(songPage).get();
+            Document doc = Jsoup.connect(BASE_URL + songPage).get();
             Element link = doc.select("a[href$=.mp3]").first();
             download(link.attr("href"), f);
         }
@@ -53,7 +55,7 @@ class Crawler {
         frame = new ProgressFrame(absolutePath, itemListSize);
     }
 
-    private static synchronized void download(String path, File destFolder) throws Exception {
+    private static synchronized void download(String path, File destFolder) {
         String fileName = path.split("/")[path.split("/").length - 1];
         String destinationFile = destFolder.getAbsolutePath() + File.separator + fileName;
         final DownloadData downloadData = new DownloadData(path, fileName, 0L);
