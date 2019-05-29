@@ -5,15 +5,13 @@
  */
 package com.andre.joana;
 
-import javax.swing.*;
-
 /**
  * @author André
  */
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        String url = JOptionPane.showInputDialog(null, "Base URL", "");
+        String url = ""; // the source url of the album
         Crawler.crawl(url);
     }
 
